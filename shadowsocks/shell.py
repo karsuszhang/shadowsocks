@@ -330,6 +330,7 @@ def get_config(is_local):
     config['libopenssl'] = config.get('libopenssl', None)
     config['libmbedtls'] = config.get('libmbedtls', None)
     config['libsodium'] = config.get('libsodium', None)
+    config['garbage_length'] = config.get('garbage_length', 0)
 
     config['tunnel_remote'] = to_str(config.get('tunnel_remote', '8.8.8.8'))
     config['tunnel_remote_port'] = config.get('tunnel_remote_port', 53)

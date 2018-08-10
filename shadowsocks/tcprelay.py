@@ -144,6 +144,7 @@ class TCPRelayHandler(object):
         self._client_address = local_sock.getpeername()[:2]
         self._remote_address = None
         self._forbidden_iplist = config.get('forbidden_ip')
+        self._garbage_length = config.get('garbage_length')
         if is_local:
             self._chosen_server = self._get_a_server()
         fd_to_handlers[local_sock.fileno()] = self
@@ -574,6 +575,9 @@ class TCPRelayHandler(object):
             data = self._cryptor.decrypt(data)
             if not data:
                 return
+        if not is_local and self._stage == STAGE_INIT and self._garbage_length > 0:
+            data = data[self._garbage_length:]
+
         if self._stage == STAGE_STREAM:
             self._handle_stage_stream(data)
             return
