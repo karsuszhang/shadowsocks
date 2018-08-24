@@ -576,7 +576,11 @@ class TCPRelayHandler(object):
             if not data:
                 return
         if not is_local and self._stage == STAGE_INIT and self._garbage_length > 0:
-            data = data[self._garbage_length:]
+            if data.__len__ < self._garbage_length:
+                logging.info('not my client income')
+                return
+            else:
+                data = data[self._garbage_length:]
 
         if self._stage == STAGE_STREAM:
             self._handle_stage_stream(data)
