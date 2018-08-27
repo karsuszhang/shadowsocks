@@ -11,6 +11,7 @@
     "dns_server":["8.8.8.8", "8.8.4.4"],
     "tunnel_remote_port":53,
     "tunnel_port":53,
+	"garbage_length":0,
     "libopenssl":"C:\\Program Files\\Git\\mingw64\\bin\\libeay32.dll",
     "libsodium":"/usr/local/lib/libsodium.so",
     "libmbedtls":"/usr/local/lib/libmbedcrypto.2.4.0.dylib"
