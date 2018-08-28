@@ -576,7 +576,9 @@ class TCPRelayHandler(object):
             if not data:
                 return
         if not is_local and self._stage == STAGE_INIT and self._garbage_length > 0:
-            if data.__len__ < self._garbage_length:
+            logging.debug("receive raw data %d include garbage %d from %s:%d" % \
+                          (len(data), self._garbage_length, self._client_address[0], self._client_address[1]))
+            if len(data) < self._garbage_length:
                 logging.info('not my client income')
                 return
             else:
